@@ -4,10 +4,12 @@ var ctx = canvas.getContext('2d');
 canvas.width = 480;
 canvas.height = 770;
 
-gravity = 0.3;
+gravity = 0.8;
 pipeSpeed = 4;
 pipeWidth = 400;
 yVel = 0;
+jumpSpeed = 14;
+
 var imgFlappy = new Image();
 var imgPipeUp = new Image();
 var imgPipeDown = new Image();
@@ -17,11 +19,13 @@ imgPipeDown.src = "./images/pipe_down.png";
 
 window.addEventListener('keydown',
     function (e) {
-        console.log(e);
-        if(e.keyCode = 32){
-            yVel = - 8;
+        //console.log(e.key);
+        if(e.key == " "){
+            yVel = -jumpSpeed;
         }
     })
+
+window.addEventListener('click', function (e) {yVel = -jumpSpeed})
 
 function Bird(x, y, rotation) {
     this.x = x;
@@ -30,10 +34,12 @@ function Bird(x, y, rotation) {
 
     this.draw = function () {
         //draw image
+        //ctx.fillRect(this.x,this.y,imgFlappy.width,imgFlappy.height); //debug rect
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(yVel * Math.PI); // rotates as it falls
-        ctx.drawImage(imgFlappy,0,0);
+        ctx.rotate((Math.PI * this.rotation)); // rotates as it falls
+        //ctx.fillRect(0,0,imgFlappy.width,imgFlappy.height);   //debug rect
+        ctx.drawImage(imgFlappy,-imgFlappy.width/2,-imgFlappy.height/2);
         ctx.restore();
     }
 
@@ -45,8 +51,9 @@ function Bird(x, y, rotation) {
             yVel = 20;
         }
         if (yVel => 0){
-            this.rotation = yVel / 20;
-            console.log(this.rotation);
+            this.rotation = yVel/60; //the rotation should be between 0-0.3 as it represents PI*rotation radians
+            console.log("rotation: " + this.rotation);
+            console.log("yvel: " + yVel);
         }
     }
 }
