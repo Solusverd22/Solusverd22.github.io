@@ -230,6 +230,11 @@ function checkCollision() {
 			playEffect("sndOver",0.8);
 		}
 	}
+
+	if(flappy.y + flappy.height >= ctx.height){
+		gameOver = true;
+		playEffect("sndOver",0.8);
+	}
 }
 
 function animate(){
