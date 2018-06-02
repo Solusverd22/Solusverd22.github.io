@@ -231,7 +231,7 @@ function checkCollision() {
 		}
 	}
 
-	if(flappy.y + flappy.height >= ctx.height){
+	if(flappy.y + imgFlappy.height >= canvas.height){
 		gameOver = true;
 		playEffect("sndOver",0.8);
 	}
