@@ -7,6 +7,7 @@
 }
 
 html {
+    height: 100%;
     box-sizing: border-box;
     font-family: 'Modern Antiqua', cursive;
     background: var(--light);
@@ -16,10 +17,6 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     /* overflow-x: hidden; */
-}
-
-body {
-    margin:30px 50px;
 }
 
 img{
@@ -41,6 +38,12 @@ Header {
     border: 2;
     font-family: Arial, Helvetica, sans-serif;
     font-size:1.2rem;
+    cursor: pointer;
+    /* disables selection */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .btn:hover {
@@ -93,11 +96,8 @@ Header {
 #die-container {
     grid-column: 2/3;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 1vw;
-    grid-template-areas:
-        'd4 d4 d6 d6 d8 d8 d10 d10 d12 d12 d20 d20';
 }
 
 .die-header {
@@ -106,28 +106,12 @@ Header {
     font-size: 1.3rem;
 }
 
-#d4 {
-    grid-area: d4;
-}
-#d6 {
-    grid-area: d6;
-}
-#d8 {
-    grid-area: d8;
-}
-#d10 {
-    grid-area: d10;
-}
-#d12 {
-    grid-area: d12;
-}
-#d20 {
-    grid-area: d20;
-}
-
 #roll-button {
     grid-column: 2/3;
-    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0.1vw;
+    width: 65%;
     text-align: center;
     margin:auto;
 }
@@ -176,10 +160,21 @@ Header {
     #dice-output-container{
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    #die-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media(max-width: 500px) {
+
     #dice-output-container{
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 300px) {
+    #dice-output-container{
+        grid-template-columns: 1fr;
     }
 }
