@@ -5,10 +5,10 @@
     --hover: #ffffff31;
     --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
     height: 100vw;
+    overflow: hidden;
 }
 
 html {
-    height: 100vw;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     background: white;
@@ -113,11 +113,12 @@ Header {
 
     font-size: 5vw;
 
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in-out;
+    cursor: default;
 }
 
 #title:hover {
-    transform: rotateY(45deg);
+    transform: rotateY(30deg);
 }
 
 #die-container {
