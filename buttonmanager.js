@@ -1,12 +1,23 @@
 // document.getElementById("die1").innerText = "D4";
 //how to interact with basic html ^
 
+var diceRollSound = new Audio("sound/diceRoll.mp3");
+var nat20Sound = new Audio("sound/zeldaItem.mp3");
+var nat1Sound = new Audio("sound/bruhMoment.mp3");
+
 function Die(diesize) {
     this.size = diesize;
     this.lastRoll = null;
 
     this.roll = function () {
-        this.lastRoll = Math.ceil(Math.random() * this.size) + "/" + this.size;
+        diceRollSound.currentTime = 0;
+        diceRollSound.play(); 
+        //generates dice roll
+        rollNumber = Math.ceil(Math.random() * this.size);
+        //plays specific sounds for nat1 and nat20
+        checkForBruhMoment(this.size,rollNumber);
+        //generates text for dice box
+        this.lastRoll = rollNumber + "/" + this.size;
         return this.lastRoll;
     }
 }
@@ -90,6 +101,15 @@ function ClearDie(){
             document.getElementById("die" + (index + 1)).innerText = "-";
         }
     );
+}
+
+function checkForBruhMoment(size,dRoll){
+    if(dRoll == 20){
+        nat20Sound.play();
+    }
+    if(size == 20 && dRoll == 1){
+        nat1Sound.play();
+    }
 }
 
 function animate() {
