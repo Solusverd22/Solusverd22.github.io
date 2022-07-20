@@ -7,6 +7,8 @@ var frameDelta = 1;
 var lastFrame = 0;
 var mouseX = innerWidth/2;
 var mouseY = innerHeight/2;
+timeout = false, // holder for resizetimeout id
+delay = 250, // delay after resizeevent is "complete" to run callback
 
 document.onmousemove = function(event) {
     mouseX = event.clientX;
@@ -34,7 +36,7 @@ function particle(x,y,yVel,radius) {
         // if(this.radius > radius){
         //     this.radius -= 0.1;
         // }
-        this.radius = dist(this)*1.5;
+        this.radius = 20+dist(this);
         if(this.radius > 80){
             this.radius = 80;
         }
@@ -42,7 +44,7 @@ function particle(x,y,yVel,radius) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
         // ctx.fillStyle = "rgba(60, 60, 60," + (radius-8)/10 +")";
-        var shade = (this.radius-10)/80*255;
+        var shade = ((this.radius-10)/100*255);
         var color = "rgb("+shade+", "+shade+", "+shade+")";
         ctx.fillStyle = color;
         ctx.fill();
@@ -51,8 +53,23 @@ function particle(x,y,yVel,radius) {
 
 var particles = [];
 
-for (let i = 0; i < 200; i++) {
-    particles[i] = new particle(Math.random() * innerWidth, Math.random() * innerHeight, Math.random()/2,(Math.random()*10)+10);
+function create_particles() {
+    for (let i = 0; i < 300; i++) {
+        particles[i] = new particle(Math.random() * innerWidth, Math.random() * innerHeight, Math.random()/2,Math.random());
+        }
+}
+create_particles()
+
+window.addEventListener('resize', function() {
+    // clear the timeout
+    clearTimeout(timeout);
+    // start timing for event "completion"
+    timeout = setTimeout(getDimensions, delay);
+});
+
+// window.resize callback function
+function getDimensions() {
+    create_particles();
 }
 
 function loop() {
@@ -70,7 +87,6 @@ function loop() {
     }
 
     lastFrame = now;
-
     requestAnimationFrame(loop);
 }
 

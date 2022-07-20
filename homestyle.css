@@ -11,7 +11,7 @@
 html {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    background: white;
+    background: rgb(94, 94, 94);
     color: var(--dark);
     /* background-image: url('../images/dnd background.jpg'); */
     background-position-x: center;
