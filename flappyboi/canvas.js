@@ -59,6 +59,9 @@ window.addEventListener('keydown', function (e) {
 		playEffect("sndFlap",Math.random()+1.5);
 		notStarted = false;
 	}
+	if(gameOver){
+		location.reload()
+	}
 
 	if(e.key == "Escape" && !gameOver){
 		paused = !paused;
@@ -318,8 +321,8 @@ function writePleaseRefresh() {
 	ctx.font = "24px pixelfont";
 	ctx.fillStyle = "#D7E894";
 	ctx.textAlign = "center";
-	ctx.fillText("Refresh the page", canvas.width / 2, canvas.height / 4);
-	ctx.fillText("to try again. (F5)", canvas.width / 2, canvas.height / 3.5);
+	ctx.fillText("nice score :)", canvas.width / 2, canvas.height / 4);
+	ctx.fillText("press space to retry", canvas.width / 2, canvas.height / 3.5);
 }
 
 function writeStartingTips() {

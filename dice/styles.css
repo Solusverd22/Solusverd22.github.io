@@ -12,7 +12,7 @@ html {
     font-family: 'Modern Antiqua', cursive;
     background: var(--light);
     color: var(--light);
-    background-image: url('../images/dnd background.jpg');
+    background-image: url('./images/dnd background.jpg');
     background-position-x: center;
     background-size: cover;
     background-repeat: no-repeat;
