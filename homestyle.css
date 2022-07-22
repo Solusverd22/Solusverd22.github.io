@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 :root{
     --dark: #222323;
     --light: #F1F1D4;
@@ -9,9 +13,8 @@
 }
 
 html {
-    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    background: #B3B3B3;
+    background: #000000;
     color: var(--dark);
     /* background-image: url('../images/dnd background.jpg'); */
     background-position-x: center;
@@ -84,7 +87,7 @@ Header {
 
 .main-nav a:hover {
     background: var(--hover);
-    color: var(--dark);
+    color: var(--light);
 }
 
 #selected-nav {
@@ -106,20 +109,34 @@ Header {
 
 #title {
     color: black;
-    background: linear-gradient(to bottom right, #ff00ea 25%, #00ffff 75%);
+    /* background: radial-gradient(#FFF430 8%,#FFFFFF 10%, #9C59D1 20%, #000000 28%); */
+    background: linear-gradient(to bottom right, #FFF430 40%,#FFFFFF 50%, #9c59d1 60%, #000000 70%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    font-size: 5vw;
+    font-size: 8vw;
 
     transition: transform 0.3s ease-in-out;
     cursor: default;
 }
 
-#title:hover {
+/* #title:hover {
     transform: rotateY(30deg);
+} */
+.rotate {
+    animation: rotation 4s infinite linear;
 }
+
+@keyframes rotation {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(359deg);
+    }
+}
+  
 
 #die-container {
     grid-column: 2/3;

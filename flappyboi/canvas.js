@@ -306,6 +306,9 @@ function loop() {
 		flappy.draw();
 		writePauseTips();
 	}
+	// would be nice but bokes everything
+	// ctx.canvas.width = 480*window.innerHeight/770;
+	// ctx.canvas.height = window.innerHeight
 }
 
 loop();
@@ -322,7 +325,8 @@ function writePleaseRefresh() {
 	ctx.fillStyle = "#D7E894";
 	ctx.textAlign = "center";
 	ctx.fillText("nice score :)", canvas.width / 2, canvas.height / 4);
-	ctx.fillText("press space to retry", canvas.width / 2, canvas.height / 3.5);
+	ctx.fillText("press spacebar", canvas.width / 2, canvas.height / 3.5);
+	ctx.fillText("or tap to retry", canvas.width / 2, canvas.height / 3.1);
 }
 
 function writeStartingTips() {

@@ -3,6 +3,7 @@ var ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+var particleCount = 1000
 var frameDelta = 1;
 var lastFrame = 0;
 var mouseX = innerWidth/2;
@@ -26,6 +27,7 @@ function particle(x,y,yVel,radius) {
     this.yVel = yVel;
     this.x = x;
     this.y = y;
+    var minSize = 20
     
     this.draw = function () {
         this.y -= this.yVel * frameDelta;
@@ -36,16 +38,21 @@ function particle(x,y,yVel,radius) {
         // if(this.radius > radius){
         //     this.radius -= 0.1;
         // }
-        this.radius = 20+dist(this);
-        if(this.radius > 80){
-            this.radius = 80;
+        var mousedistance = dist(this)
+        this.radius = minSize+mousedistance*5;
+        if(this.radius > 100){
+            this.radius = 100;
         }
 
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
         // ctx.fillStyle = "rgba(60, 60, 60," + (radius-8)/10 +")";
-        var shade = ((this.radius-10)/100*255);
-        var color = "rgb("+shade+", "+shade+", "+shade+")";
+        var shade = ((this.radius-minSize)/90);
+        shade = 1 - shade
+        var colr = shade * 156;
+        var colb = shade * 89;
+        var colg = shade * 209;
+        var color = "rgb("+colr+", "+colb+", "+colg+")";
         ctx.fillStyle = color;
         ctx.fill();
     }
@@ -54,7 +61,7 @@ function particle(x,y,yVel,radius) {
 var particles = [];
 
 function create_particles() {
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < particleCount; i++) {
         particles[i] = new particle(Math.random() * innerWidth, Math.random() * innerHeight, Math.random()/2,Math.random());
         }
 }
@@ -82,7 +89,7 @@ function loop() {
     canvas.width = innerWidth;
     canvas.height = innerHeight;
     ctx.clearRect(0, 0, innerWidth, innerHeight);
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < particleCount; i++) {
         particles[i].draw();
     }
 
