@@ -75,6 +75,9 @@ window.addEventListener('click', function (e) {
 		playEffect("sndFlap",Math.random()+1.5);
 		notStarted = false;
 	}
+	if(gameOver){
+		location.reload()
+	}
 })
 
 function Bird(x, y, rotation) {
